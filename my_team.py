@@ -1202,7 +1202,8 @@ class DualOffensiveAgent(OffensiveAStarAgent):
 
         # Si detectamos bucle en modo ofensivo, forzamos retorno
         if getattr(self, "stuck_mode", False) and mode in ('entry', 'collect', 'distract'):
-            print(f"[COORD-{self.index}] STUCK in {mode} → FORCED RETURN")
+            if self.debug:
+                print(f"[COORD-{self.index}] STUCK in {mode} → FORCED RETURN")
             target = self.get_safest_home_position(game_state, my_pos)
             mode = 'return'
             self.reset_stuck_state()
